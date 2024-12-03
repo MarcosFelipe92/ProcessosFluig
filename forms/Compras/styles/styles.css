@@ -1,0 +1,45 @@
+.custom-radio input {
+  display: none !important;
+}
+
+.custom-radio label::before {
+  content: "" !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  border: 1px solid gray !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-right: 8px !important;
+  margin-bottom: 3px !important;
+}
+
+.custom-radio input:checked + label::before {
+  background-color: white !important;
+  box-sizing: border-box !important;
+  border: 5px solid aqua !important;
+  padding: 1px !important;
+}
+
+.title-table {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-weight: bold !important;
+}
+
+.add-button,
+.remove-button {
+  border-radius: 8px !important;
+  width: 160px;
+  height: 40px !important;
+  background-color: #5cb85c !important;
+  color: white !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  font-weight: bold !important;
+}
+
+.remove-button {
+  background-color: #d9534f !important;
+}

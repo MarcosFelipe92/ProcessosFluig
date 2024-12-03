@@ -1,0 +1,29 @@
+.genero-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  height: 100% !important;
+}
+
+.custom-radio input {
+  display: none !important;
+}
+
+.custom-radio label::before {
+  content: "" !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  border: 1px solid gray !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-right: 8px !important;
+  margin-bottom: 3px !important;
+}
+
+.custom-radio input:checked + label::before {
+  background-color: white !important;
+  box-sizing: border-box !important;
+  border: 5px solid #5cb85c !important;
+  padding: 1px !important;
+}

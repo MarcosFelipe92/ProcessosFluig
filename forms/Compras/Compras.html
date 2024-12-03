@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+    <script src="/portal/resources/js/jquery/jquery.js"></script>
+    <script src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+    <script src="/portal/resources/js/mustache/mustache-min.js"></script>
+    <script src="/style-guide/js/fluig-style-guide.min.js"></script>
+
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <div class="fluig-style-guide">
+        <form name="form" role="form">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Dados da Solicitação</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-6 required">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control" name="name" id="name">
+                        </div>
+
+                        <div class="form-group col-md-4 required">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="email">
+
+                        </div>
+                        <div class="form-group col-md-2 required">
+                            <label for="dataSolicitacao">Data da solicitação</label>
+                            <input type="text" class="form-control" name="dataSolicitacao" id="dataSolicitacao">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Dados da Compra</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-4 required">
+                            <label for="estado">Estado</label>
+                            <input type="zoom" id="estado" name="estado" data-zoom="{
+                                'datasetId':'dsEstados',
+                                'displayKey':'NOME',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione o Estado',
+                                'fields':[
+                                    {
+                                        'field':'SIGLA',
+                                        'label':'Sigla',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'NOME',
+                                        'label':'Nome',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                        <div class="form-group col-md-4 required">
+                            <label for="filial">Filial</label>
+                            <input type="zoom" id="filial" name="filial" data-zoom="{
+                                'datasetId':'dsFiliais',
+                                'displayKey':'NOME',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione a filial',
+                                'fields':[
+                                    {
+                                        'field':'COD',
+                                        'label':'Código',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'NOME',
+                                        'label':'Nome',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'ESTADO',
+                                        'label':'Estado',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                        <div class="form-group col-md-4 required">
+                            <label for="centroCusto">Centro de Custo</label>
+                            <input type="zoom" id="centroCusto" name="centroCusto" data-zoom="{
+                                'datasetId':'dsCentroCusto',
+                                'displayKey':'NOME',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione o Centro de Custo',
+                                'fields':[
+                                    {
+                                        'field':'COD',
+                                        'label':'Código',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'NOME',
+                                        'label':'Nome',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'FILIAL',
+                                        'label':'Filial',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="observacoes">Observações</label>
+                            <textarea class="form-control" name="observacoes" id="observacoes" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="title-table"><i class="flaticon flaticon-product icon-xl"
+                                aria-hidden="true"></i>Items
+                        </h3>
+                        <div class="row" id="tableItems">
+                            <table tablename="items" class="table col-md-12" noaddbutton="true" nodeletebutton="true">
+                                <thead>
+                                    <tr>
+                                        <td><label>Nome <span class="text-danger"> *</span> </label></td>
+                                        <td><label>Quantidade <span class="text-danger"> *</span> </label></td>
+                                        <td><label>Preço <span class="text-danger"> *</span> </label></td>
+                                        <td>
+                                            <button type="button" class="add-button" onclick="addLine()">Adicionar
+                                                Item</button>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" name="itemName" id="itemName">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="quantidade" id="quantidade">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="preco" id="preco">
+                                        </td>
+                                        <td>
+                                            <button type="button" class="remove-button"
+                                                onclick="removeLine(this)">Remover
+                                                Item</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="painelAprovacao" class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Aprovação</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group required">
+                            <label>Aprova?</label><br>
+                            <div class="custom-radio">
+                                <input type="radio" name="aprovacao" id="aprovar" value="sim">
+                                <label for="aprovar">Sim</label>
+                            </div>
+                            <div class="custom-radio">
+                                <input type="radio" name="aprovacao" id="rejeitar" value="nao">
+                                <label for="rejeitar">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="justificativa">Justificativa</label>
+                            <textarea class="form-control" name="justificativa" id="justificativa" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script src="compras.js"></script>
+<script src="utils.js"></script>
+
+</html>

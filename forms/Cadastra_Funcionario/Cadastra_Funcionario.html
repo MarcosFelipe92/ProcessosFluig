@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+    <link rel="stylesheet" href="styles/style.css">
+
+    <script src="/portal/resources/js/jquery/jquery.js"></script>
+    <script src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+    <script src="/portal/resources/js/mustache/mustache-min.js"></script>
+    <script src="/style-guide/js/fluig-style-guide.min.js"></script>
+</head>
+
+<body>
+    <div class="fluig-style-guide">
+        <form name="form" role="form">
+            <input type="hidden" name="valueTipoContrato" id="valueTipoContrato">
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Solicitante</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" name="nome" id="nome">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="email">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="dataSolicitacao">Data de Solicitação</label>
+                            <input type="text" class="form-control" name="dataSolicitacao" id="dataSolicitacao">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Dados do Funcionário</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-4 required">
+                            <label for="nomeFuncionario">Nome</label>
+                            <input type="text" class="form-control" name="nomeFuncionario" id="nomeFuncionario">
+                        </div>
+                        <div class="form-group col-md-4 required">
+                            <label for="emailFuncionario">Email</label>
+                            <input type="text" class="form-control" name="emailFuncionario" id="emailFuncionario">
+                        </div>
+                        <div class="form-group col-md-2 required">
+                            <label for="telefoneFuncionario">Telefone</label>
+                            <input type="text" class="form-control" name="telefoneFuncionario" id="telefoneFuncionario"
+                                mask="(00) 90000-0000">
+                        </div>
+                        <div class="form-group col-md-2 required">
+                            <label for="dataNascimento">Data de nascimento</label>
+                            <input type="text" class="form-control" name="dataNascimento" id="dataNascimento"
+                                mask="00/00/0000">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-3 required">
+                            <label for="nacionalidade">Nacionalidade</label>
+                            <input type="zoom" class="form-control" id="nacionalidade" name="nacionalidade" data-zoom="{
+                                'datasetId':'dsNacionalidade',
+                                'displayKey':'name',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione a Nacionalidade',
+                                'fields':[
+                                    {
+                                        'field':'cod',
+                                        'label':'Código',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'name',
+                                        'label':'Nome',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                        <div class="form-group col-md-3 required">
+                            <label for="naturalidade">Naturalidade</label>
+                            <input type="zoom" class="form-control" id="naturalidade" name="naturalidade" data-zoom="{
+                                'datasetId':'dsNaturalidade',
+                                'displayKey':'name',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione a Naturalidade',
+                                'fields':[
+                                    {
+                                        'field':'cod',
+                                        'label':'Código',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'name',
+                                        'label':'Nome',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                        <div class="form-group col-md-3 required">
+                            <label for="estadoCivil">Estado civil</label>
+                            <input type="zoom" class="form-control" id="estadoCivil" name="estadoCivil" data-zoom="{
+                                'datasetId':'dsEstadoCivil',
+                                'displayKey':'name',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione o Estado Civil',
+                                'fields':[
+                                    {
+                                        'field':'cod',
+                                        'label':'Código',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'name',
+                                        'label':'Nome',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                        <div class="form-group col-md-3 required campo">
+                            <label>Gênero</label><br>
+                            <div class="genero-container">
+                                <div class="custom-radio">
+                                    <input type="radio" name="genero" id="masculino" value="masculino">
+                                    <label for="masculino">Masculino</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" name="genero" id="feminino" value="feminino">
+                                    <label for="feminino">Feminino</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4 required">
+                            <label for="cpf">CPF</label>
+                            <input type="text" class="form-control" name="cpf" id="cpf" mask="000.000.000-00">
+                        </div>
+                        <div class="form-group col-md-2 required">
+                            <label for="identidade">Identidade</label>
+                            <input type="text" class="form-control" name="identidade" id="identidade">
+                        </div>
+                        <div class="form-group col-md-4 required">
+                            <label for="orgaoEmissor">Órgão emissor</label>
+                            <input type="text" class="form-control" name="orgaoEmissor" id="orgaoEmissor">
+                        </div>
+                        <div class="form-group col-md-2 required">
+                            <label for="dataEmissao">Data de emissão</label>
+                            <input type="text" class="form-control" name="dataEmissao" id="dataEmissao"
+                                mask="00/00/0000">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="cnh">CNH</label>
+                            <input type="text" class="form-control" name="cnh" id="cnh">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="categoriaCnh">Categoria CNH</label>
+                            <input type="zoom" class="form-control" id="categoriaCnh" name="categoriaCnh" data-zoom="{
+                                'datasetId':'dsCategoriaCnh',
+                                'displayKey':'descricao',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione a Categoria',
+                                'fields':[
+                                    {
+                                        'field':'cod',
+                                        'label':'Código',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'descricao',
+                                        'label':'Descrição',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="dataEmissaoCnh">Data de emissão</label>
+                            <input type="text" class="form-control" name="dataEmissaoCnh" id="dataEmissaoCnh"
+                                mask="00/00/0000">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="dataVencimentoChn">Data de vencimento</label>
+                            <input type="text" class="form-control" name="dataVencimentoChn" id="dataVencimentoChn"
+                                mask="00/00/0000">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4 required">
+                            <label for="tipoContrato">Tipo de Contrato</label>
+                            <input type="zoom" class="form-control" id="tipoContrato" name="tipoContrato" data-zoom="{
+                                'datasetId':'dsTiposContrato',
+                                'displayKey':'nome',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione o Tipo de Contrato',
+                                'fields':[
+                                    {
+                                        'field':'cod',
+                                        'label':'Código',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'nome',
+                                        'label':'Nome',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                        <div class="form-group col-md-4 required">
+                            <label for="funcao">Função</label>
+                            <input type="zoom" class="form-control" id="funcao" name="funcao" data-zoom="{
+                                'datasetId':'dsFuncoes',
+                                'displayKey':'nome',
+                                'maximumSelectionLength':'1',
+                                'placeholder':'Selecione a Função',
+                                'fields':[
+                                    {
+                                        'field':'cod',
+                                        'label':'Código',
+                                        'standard':'true'
+                                    },
+                                    {
+                                        'field':'nome',
+                                        'label':'Nome',
+                                        'standard':'true'
+                                    }
+                                ]
+                            }">
+                        </div>
+                        <div class="form-group col-md-2 required" id="vHoras">
+                            <label for="valorHora">Valor Hora</label>
+                            <input type="text" class="form-control" name="valorHora" id="valorHora" placeholder="R$"
+                                mask="#00.000.000.000.000,00">
+                        </div>
+                        <div class="form-group col-md-2 required" id="tHoras">
+                            <label for="totalHoras">Total Horas</label>
+                            <input type="text" class="form-control" name="totalHoras" id="totalHoras" mask="000">
+                        </div>
+                    </div>
+
+                    <!-- Campos adicionais para Estágio -->
+                    <div id="estagioFields">
+                        <div class="row">
+                            <div class="form-group col-md-4 required">
+                                <label for="instituicaoEnsino">Instituição de Ensino</label>
+                                <input type="text" class="form-control" id="instituicaoEnsino" name="instituicaoEnsino">
+                            </div>
+
+                            <div class="form-group col-md-4 required">
+                                <label for="responsavel">Responsável</label>
+                                <input type="text" class="form-control" id="responsavel" name="responsavel">
+                            </div>
+
+                            <div class="form-group col-md-4 required">
+                                <label for="cargaHoraria">Carga Horária Semanal</label>
+                                <input type="text" class="form-control" id="cargaHoraria" name="cargaHoraria" mask="00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campos adicionais para Freelancer -->
+                    <div id="freelancerFields">
+                        <div class="row">
+                            <div class="form-group col-md-4 required">
+                                <label for="projeto">Projeto</label>
+                                <input type="text" class="form-control" id="projeto" name="projeto"
+                                    placeholder="Nome do projeto">
+                            </div>
+
+                            <div class="form-group col-md-4 required">
+                                <label for="prazoEntrega">Prazo de Entrega</label>
+                                <input type="text" class="form-control" id="prazoEntrega" name="prazoEntrega">
+                            </div>
+
+                            <div class="form-group col-md-4 required">
+                                <label for="valorContrato">Valor do Contrato</label>
+                                <input type="text" class="form-control" id="valorContrato" name="valorContrato"
+                                    placeholder="R$" mask="#00.000.000.000.000,00">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="painelAprovacao" class="panel panel-success">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Aprovação</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-3 required">
+                            <label>Aprova?</label><br>
+                            <div class="genero-container">
+                                <div class="custom-radio">
+                                    <input type="radio" name="aprovacao" id="aprovar" value="sim">
+                                    <label for="aprovar">Sim</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" name="aprovacao" id="rejeitar" value="nao">
+                                    <label for="rejeitar">Não</label>
+                                </div>
+                                <div class="custom-radio">
+                                    <input type="radio" name="aprovacao" id="reajuste" value="reajuste">
+                                    <label for="reajuste">Reajuste</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="justificativa">Justificativa</label>
+                            <textarea class="form-control" name="justificativa" id="justificativa" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="custom.js"></script>
+<script src="utils.js"></script>
+
+</html>

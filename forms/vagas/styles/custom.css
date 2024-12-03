@@ -1,0 +1,28 @@
+.disabled-field {
+    pointer-events: none; 
+    background-color: #f2f2f2 !important;
+    color: #e3e3e3; 
+}
+
+.add-button,
+.remove-button {
+  border-radius: 8px !important;
+  width: 160px;
+  height: 40px !important;
+  background-color: #5cb85c !important;
+  color: white !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  font-weight: bold !important;
+}
+
+.remove-button {
+  background-color: #d9534f !important;
+}
+
+.title-table {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-weight: bold !important;
+}
